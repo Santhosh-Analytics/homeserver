@@ -1,0 +1,49 @@
+services:
+  whisper-en:
+    image: rhasspy/wyoming-whisper:latest
+    container_name: wyoming-whisper-en
+    restart: unless-stopped
+
+    ports:
+      - "127.0.0.1:10300:10300"
+
+    volumes:
+      - /home/san/server_data/whisper:/data
+
+    command:
+      - --model
+      - tiny-int8
+      - --language
+      - en
+
+  whisper-ta:
+    image: rhasspy/wyoming-whisper:latest
+    container_name: wyoming-whisper-ta
+    restart: unless-stopped
+
+    ports:
+      - "127.0.0.1:10301:10300"
+
+    volumes:
+      - /home/san/server_data/whisper-ta:/data
+
+    command:
+      - --model
+      - base-int8
+      - --language
+      - ta
+
+  piper:
+    image: rhasspy/wyoming-piper:latest
+    container_name: wyoming-piper
+    restart: unless-stopped
+
+    ports:
+      - "127.0.0.1:10200:10200"
+
+    volumes:
+      - /home/san/server_data/piper:/data
+
+    command:
+      - --voice
+      - en_US-lessac-medium
