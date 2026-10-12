@@ -1,9 +1,14 @@
+
 services:
   homeassistant:
     image: ghcr.io/home-assistant/home-assistant:stable
     container_name: homeassistant
     restart: unless-stopped
     network_mode: host
+
+    cap_add:
+      - NET_ADMIN
+      - NET_RAW
 
     environment:
       TZ: Asia/Kolkata
@@ -12,4 +17,3 @@ services:
       - /home/san/server_data/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
-
