@@ -1,0 +1,57 @@
+# For configuration options and examples, please see:
+# https://gethomepage.dev/configs/services/
+
+- Home Automation:
+    - Home Assistant:
+        icon: home-assistant.png
+        href: http://192.168.29.239:8123
+        description: Smart home control
+        server: my-docker
+        container: homeassistant
+        # widget:
+        #   type: docker
+        #   server: my-docker
+        #   container: homeassistant
+
+- Voice AI:
+    - Linux Voice Assistant:
+        icon: mdi-microphone
+        description: Home Assistant voice satellite
+        server: my-docker
+        container: linux-voice-assistant
+        # widget:
+        #   type: docker
+        #   server: my-docker
+        #   container: linux-voice-assistant
+        #
+    - Whisper:
+        icon: mdi-waveform
+        description: Local speech-to-text
+        server: my-docker
+        container: wyoming-whisper-en
+        # widget:
+        #   type: docker
+        #   server: my-docker
+        #   container: wyoming-whisper-en
+
+    - Piper:
+        icon: mdi-volume-high
+        description: Local text-to-speech
+        server: my-docker
+        container: wyoming-piper
+        # widget:
+        #   type: docker
+        #   server: my-docker
+        #   container: wyoming-piper
+
+- Infrastructure:
+    - Homepage:
+        icon: homepage.png
+        href: http://192.168.29.239:3000
+        description: Home server dashboard
+        server: my-docker
+        container: homepage
+        # widget:
+        #   type: docker
+        #   server: my-docker
+        #   container: homepage

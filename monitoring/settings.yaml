@@ -1,0 +1,11 @@
+title: San's Home Server
+description: Home infrastructure dashboard
+theme: dark
+bookmarksStyle: icons
+background:
+  image: /images/0003.jpg
+  blur: sm
+  saturate: 50
+  brightness: 50
+  opacity: 50
+cardBlur: sm

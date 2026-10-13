@@ -1,4 +1,3 @@
----
 services:
   # Fix permissions for wakeword_data and configuration volume
   fix-permissions:
@@ -30,6 +29,7 @@ services:
     user: "${LVA_USER_ID:-1000}:${LVA_USER_GROUP:-1000}"
     environment:
       # Pulseaudio
+      - ENABLE_DEBUG=1
       - XDG_RUNTIME_DIR=${LVA_XDG_RUNTIME_DIR:-/run/user/1000}
       - PULSE_SERVER=${LVA_PULSE_SERVER:-/run/user/1000/pulse/native}
       - PULSE_COOKIE=${LVA_PULSE_COOKIE:-/run/user/1000/pulse/cookie}
