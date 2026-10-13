@@ -51,7 +51,15 @@
         description: Home server dashboard
         server: my-docker
         container: homepage
-        # widget:
-        #   type: docker
-        #   server: my-docker
-        #   container: homepage
+    - Home Server:
+        icon: mdi-laptop
+        description: Debian home server
+        widget:
+          type: homeassistant
+          url: http://192.168.29.239:8123
+          key: "{{HOMEPAGE_VAR_HA_TOKEN}}"
+          custom:
+            - state: sensor.server_battery
+              label: Battery
+            - state: sensor.server_battery_status
+              label: Power

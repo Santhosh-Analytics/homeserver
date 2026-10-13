@@ -28,6 +28,8 @@ services:
 
     environment:
       HOMEPAGE_ALLOWED_HOSTS: "192.168.29.239:3000"
+    env_file:
+      - .env
 
     networks:
       - monitoring
