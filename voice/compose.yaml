@@ -14,7 +14,7 @@ services:
 
     command:
       - --model
-      - tiny-int8
+      - base-int8
       - --language
       - en
 
@@ -33,7 +33,7 @@ services:
 
     command:
       - --model
-      - base-int8
+      - small-int8
       - --language
       - ta
 
@@ -52,4 +52,4 @@ services:
 
     command:
       - --voice
-      - en_US-lessac-medium
+      - en_US-lessac-high
