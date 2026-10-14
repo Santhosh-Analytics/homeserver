@@ -3,6 +3,8 @@ services:
     image: rhasspy/wyoming-whisper:latest
     container_name: wyoming-whisper-en
     restart: unless-stopped
+    labels:
+      - "diun.enable=true"
 
     ports:
       - "127.0.0.1:10300:10300"
@@ -20,6 +22,8 @@ services:
     image: rhasspy/wyoming-whisper:latest
     container_name: wyoming-whisper-ta
     restart: unless-stopped
+    labels:
+      - "diun.enable=true"
 
     ports:
       - "127.0.0.1:10301:10300"
@@ -37,6 +41,8 @@ services:
     image: rhasspy/wyoming-piper:latest
     container_name: wyoming-piper
     restart: unless-stopped
+    labels:
+      - "diun.enable=true"
 
     ports:
       - "127.0.0.1:10200:10200"

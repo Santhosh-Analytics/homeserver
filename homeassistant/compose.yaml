@@ -5,6 +5,8 @@ services:
     container_name: homeassistant
     restart: unless-stopped
     network_mode: host
+    labels:
+      - "diun.enable=true"
 
     cap_add:
       - NET_ADMIN

@@ -63,3 +63,22 @@
               label: Battery
             - state: sensor.server_battery_status
               label: Power
+    - Diun:
+        icon: mdi-update
+        description: Container update monitor
+        server: my-docker
+        container: diun
+    - AdGuard Home:
+        icon: adguard-home.png
+        href: http://192.168.29.239:3001
+        description: Network DNS filtering
+        widget:
+          type: adguard
+          url: http://192.168.29.239:3001
+          username: "{{HOMEPAGE_VAR_ADGUARD_USER}}"
+          password: "{{HOMEPAGE_VAR_ADGUARD_PASSWORD}}"
+          fields:
+            - queries
+            - blocked
+            - filtered
+            - latency
