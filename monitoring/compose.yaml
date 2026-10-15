@@ -23,6 +23,8 @@ services:
     image: ghcr.io/gethomepage/homepage:latest
     container_name: homepage
     restart: unless-stopped
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     labels:
       - "diun.enable=true"
 
@@ -31,7 +33,7 @@ services:
 
     volumes:
       - ./:/app/config
-      - ./images:/app/public/images:ro
+      - ./public:/app/public/status:ro
 
     environment:
       HOMEPAGE_ALLOWED_HOSTS: "192.168.29.239:3000"

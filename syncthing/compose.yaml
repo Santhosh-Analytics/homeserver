@@ -1,0 +1,16 @@
+services:
+  syncthing:
+    image: syncthing/syncthing:latest
+    container_name: syncthing
+    hostname: homeserver
+    restart: unless-stopped
+
+    network_mode: host
+
+    environment:
+      PUID: 1000
+      PGID: 1000
+
+    volumes:
+      - ./config:/var/syncthing/config
+      - /srv/shares:/srv/shares

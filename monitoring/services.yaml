@@ -1,6 +1,3 @@
-# For configuration options and examples, please see:
-# https://gethomepage.dev/configs/services/
-
 - Home Automation:
     - Home Assistant:
         icon: home-assistant.png
@@ -8,41 +5,31 @@
         description: Smart home control
         server: my-docker
         container: homeassistant
-        # widget:
-        #   type: docker
-        #   server: my-docker
-        #   container: homeassistant
-
 - Voice AI:
     - Linux Voice Assistant:
         icon: mdi-microphone
         description: Home Assistant voice satellite
         server: my-docker
         container: linux-voice-assistant
-        # widget:
-        #   type: docker
-        #   server: my-docker
-        #   container: linux-voice-assistant
-        #
-    - Whisper:
+
+    - Whisper English:
         icon: mdi-waveform
-        description: Local speech-to-text
+        description: English speech-to-text
         server: my-docker
         container: wyoming-whisper-en
-        # widget:
-        #   type: docker
-        #   server: my-docker
-        #   container: wyoming-whisper-en
+
+    - Whisper Tamil:
+        icon: mdi-waveform
+        description: Tamil speech-to-text
+        server: my-docker
+        container: wyoming-whisper-ta
 
     - Piper:
         icon: mdi-volume-high
         description: Local text-to-speech
         server: my-docker
         container: wyoming-piper
-        # widget:
-        #   type: docker
-        #   server: my-docker
-        #   container: wyoming-piper
+
 
 - Infrastructure:
     - Homepage:
@@ -72,6 +59,8 @@
         icon: adguard-home.png
         href: http://192.168.29.239:3001
         description: Network DNS filtering
+        server: my-docker
+        container: adguard
         widget:
           type: adguard
           url: http://192.168.29.239:3001
@@ -82,3 +71,39 @@
             - blocked
             - filtered
             - latency
+    - Tailscale:
+        icon: tailscale.png
+        description: Secure remote access
+        widget:
+          type: tailscale
+          deviceid: naw1WcPmgM11CNTRL
+          key: "{{HOMEPAGE_VAR_TAILSCALE_KEY}}"
+          fields:
+            - address
+            - last_seen
+            - update_available
+            - expires
+
+
+
+
+
+
+- Backup:
+    - Restic Backup:
+        icon: mdi-cloud-check
+        description: Nightly backup to Backblaze B2
+        widget:
+          type: customapi
+          url: http://host.docker.internal:8765/restic-status.json 
+          refreshInterval: 60000
+          mappings:
+            - field: status
+              label: Status
+            - field: last_backup
+              label: Last Backup
+              format: date
+              dateStyle: short
+              timeStyle: short
+            - field: snapshot
+              label: Snapshot
