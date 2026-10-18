@@ -1,0 +1,27 @@
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:2
+    container_name: uptime-kuma
+    restart: unless-stopped
+
+    ports:
+      - "3002:3001"
+
+    volumes:
+      - /home/san/server_data/uptime-kuma:/app/data
+
+    environment:
+      - TZ=Asia/Kolkata
+
+    networks:
+      - kuma_network
+
+    logging:
+      driver: json-file
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+networks:
+  kuma_network:
+    driver: bridge

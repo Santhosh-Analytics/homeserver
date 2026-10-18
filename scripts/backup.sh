@@ -11,16 +11,27 @@ tar -czf /home/san/server_data/_system/etc.tar.gz -C / etc 2>/dev/null || true
 docker stop homeassistant
 trap 'docker start homeassistant' EXIT
 
+
+
 restic backup \
   /home/san/server_data \
   /home/san/server_infra \
   /home/san/.config \
   /var/lib/alsa \
+  /var/lib/samba \
+  /srv/shares \
+  /etc/samba \
+  /etc/systemd/system \
+  /etc/ufw \
   --exclude-caches \
   --exclude '/home/san/server_data/piper' \
   --exclude '/home/san/server_data/whisper' \
+  --exclude '/home/san/server_data/whisper-ta' \
   --exclude '/home/san/server_data/*/.cache' \
+  --exclude '/srv/shares/music' \
+  --exclude '/srv/shares/transfer' \
   --tag nightly
+
 
 docker start homeassistant
 trap - EXIT

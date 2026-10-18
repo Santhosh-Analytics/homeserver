@@ -107,3 +107,25 @@
               timeStyle: short
             - field: snapshot
               label: Snapshot
+
+- Entertainment:
+    - Navidrome:
+        icon: navidrome.png
+        href: http://192.168.29.239:4533
+        description: Personal music streaming
+        server: my-docker
+        container: navidrome
+
+- Personal:
+    - Wallos:
+        icon: wallos.png
+        href: http://192.168.29.239:8282
+        description: Subscription Tracker
+        widget:
+          type: wallos
+          url: http://192.168.29.239:8282
+          key: "{{WALLOS_API}}"
+          fields:
+            - activeSubscriptions
+            - thisMonthlyCost
+            - nextMonthlyCost
