@@ -8,6 +8,8 @@ services:
 
     ports:
       - "127.0.0.1:10300:10300"
+    networks:
+      - monitoring_net
 
     volumes:
       - /home/san/server_data/whisper:/data
@@ -18,24 +20,24 @@ services:
       - --language
       - en
 
-  whisper-ta:
-    image: rhasspy/wyoming-whisper:latest
-    container_name: wyoming-whisper-ta
-    restart: unless-stopped
-    labels:
-      - "diun.enable=true"
-
-    ports:
-      - "127.0.0.1:10301:10300"
-
-    volumes:
-      - /home/san/server_data/whisper-ta:/data
-
-    command:
-      - --model
-      - small-int8
-      - --language
-      - ta
+  # whisper-ta:
+  #   image: rhasspy/wyoming-whisper:latest
+  #   container_name: wyoming-whisper-ta
+  #   restart: unless-stopped
+  #   labels:
+  #     - "diun.enable=true"
+  #
+  #   ports:
+  #     - "127.0.0.1:10301:10300"
+  #
+  #   volumes:
+  #     - /home/san/server_data/whisper-ta:/data
+  #
+  #   command:
+  #     - --model
+  #     - small-int8
+  #     - --language
+  #     - ta
 
   piper:
     image: rhasspy/wyoming-piper:latest
@@ -44,6 +46,8 @@ services:
     labels:
       - "diun.enable=true"
 
+    networks:
+      - monitoring_net
     ports:
       - "127.0.0.1:10200:10200"
 
@@ -53,3 +57,9 @@ services:
     command:
       - --voice
       - en_US-lessac-high
+
+
+# This must be at the root level (0 spaces of indentation)
+networks:
+  monitoring_net:
+    external: true

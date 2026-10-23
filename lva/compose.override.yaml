@@ -5,4 +5,5 @@ services:
       dockerfile: Dockerfile
     image: local/linux-voice-assistant:pulse
     command:
-      - --debug
+      - --audio-input-channels
+      - "1"

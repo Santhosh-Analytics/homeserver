@@ -1,0 +1,8 @@
+services:
+  linux-voice-assistant:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: local/linux-voice-assistant:pulse
+    command:
+      - --debug

@@ -5,39 +5,39 @@
         description: Smart home control
         server: my-docker
         container: homeassistant
-- Voice AI:
-    - Linux Voice Assistant:
-        icon: mdi-microphone
-        description: Home Assistant voice satellite
-        server: my-docker
-        container: linux-voice-assistant
+    - Voice AI:
+        - Linux Voice Assistant:
+            icon: mdi-microphone
+            description: Home Assistant voice satellite
+            server: my-docker
+            container: linux-voice-assistant
 
-    - Whisper English:
-        icon: mdi-waveform
-        description: English speech-to-text
-        server: my-docker
-        container: wyoming-whisper-en
+        - Whisper English:
+            icon: mdi-waveform
+            description: English speech-to-text
+            server: my-docker
+            container: wyoming-whisper-en
 
-    - Whisper Tamil:
-        icon: mdi-waveform
-        description: Tamil speech-to-text
-        server: my-docker
-        container: wyoming-whisper-ta
+        - Piper:
+            icon: mdi-volume-high
+            description: Local text-to-speech
+            server: my-docker
+            container: wyoming-piper
+    # - Whisper Tamil:
+    #     icon: mdi-waveform
+    #     description: Tamil speech-to-text
+    #     server: my-docker
+    #     container: wyoming-whisper-ta
 
-    - Piper:
-        icon: mdi-volume-high
-        description: Local text-to-speech
-        server: my-docker
-        container: wyoming-piper
 
 
 - Infrastructure:
-    - Homepage:
-        icon: homepage.png
-        href: http://192.168.29.239:3000
-        description: Home server dashboard
-        server: my-docker
-        container: homepage
+    # - Homepage:
+    #     icon: homepage.png
+    #     href: http://192.168.29.239:3000
+    #     description: Home server dashboard
+    #     server: my-docker
+    #     container: homepage
     - Home Server:
         icon: mdi-laptop
         description: Debian home server
@@ -107,6 +107,11 @@
               timeStyle: short
             - field: snapshot
               label: Snapshot
+    - Uptime Kuma:
+        widget:
+          type: uptimekuma
+          url: http:192.168.29.239:3002
+          slug: Homelab
 
 - Entertainment:
     - Navidrome:
@@ -116,16 +121,16 @@
         server: my-docker
         container: navidrome
 
-- Personal:
-    - Wallos:
-        icon: wallos.png
-        href: http://192.168.29.239:8282
-        description: Subscription Tracker
-        widget:
-          type: wallos
-          url: http://192.168.29.239:8282
-          key: "{{WALLOS_API}}"
-          fields:
-            - activeSubscriptions
-            - thisMonthlyCost
-            - nextMonthlyCost
+# - Personal:
+#     - Wallos:
+#         icon: wallos.png
+#         href: http://192.168.29.239:8282
+#         description: Subscription Tracker
+#         widget:
+#           type: wallos
+#           url: http://192.168.29.239:8282
+#           key: "{{WALLOS_API}}"
+#           fields:
+#             - activeSubscriptions
+#             - thisMonthlyCost
+#             - nextMonthlyCost
