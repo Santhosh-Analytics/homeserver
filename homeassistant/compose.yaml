@@ -19,3 +19,4 @@ services:
       - /home/san/server_data/homeassistant:/config
       - /etc/localtime:/etc/localtime:ro
       - /run/dbus:/run/dbus:ro
+      - /srv/shares/Stories/Audiobooks:/media/audiobooks:ro

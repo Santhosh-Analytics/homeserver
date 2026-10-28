@@ -4,6 +4,8 @@ services:
     container_name: syncthing
     hostname: homeserver
     restart: unless-stopped
+    labels:
+      - "diun.enable=true"
 
     network_mode: host
 

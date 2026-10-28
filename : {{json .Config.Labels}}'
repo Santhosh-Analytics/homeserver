@@ -1,0 +1,40 @@
+[1mdiff --git a/navidrome/compose.yml b/navidrome/compose.yml[m
+[1mindex b786782..aa4443e 100644[m
+[1m--- a/navidrome/compose.yml[m
+[1m+++ b/navidrome/compose.yml[m
+[36m@@ -5,6 +5,8 @@[m [mservices:[m
+     user: 1000:1000 # must own the data folder and be able to read music folder(s). See Permissions below[m
+     ports:[m
+       - "4533:4533"[m
+[32m+[m[32m    labels:[m
+[32m+[m[32m      - "diun.enable=true"[m
+     restart: unless-stopped[m
+     environment:[m
+       ND_LOGLEVEL: info[m
+[1mdiff --git a/syncthing/compose.yaml b/syncthing/compose.yaml[m
+[1mindex 11ac238..3e0497c 100644[m
+[1m--- a/syncthing/compose.yaml[m
+[1m+++ b/syncthing/compose.yaml[m
+[36m@@ -4,6 +4,8 @@[m [mservices:[m
+     container_name: syncthing[m
+     hostname: homeserver[m
+     restart: unless-stopped[m
+[32m+[m[32m    labels:[m
+[32m+[m[32m      - "diun.enable=true"[m
+ [m
+     network_mode: host[m
+ [m
+[1mdiff --git a/uptime-kuma/docker-compose.yml b/uptime-kuma/docker-compose.yml[m
+[1mindex 8883f90..0cbbd52 100644[m
+[1m--- a/uptime-kuma/docker-compose.yml[m
+[1m+++ b/uptime-kuma/docker-compose.yml[m
+[36m@@ -3,7 +3,8 @@[m [mservices:[m
+     image: louislam/uptime-kuma:2[m
+     container_name: uptime-kuma[m
+     restart: unless-stopped[m
+[31m-[m
+[32m+[m[32m    labels:[m
+[32m+[m[32m      - "diun.enable=true"[m
+     ports:[m
+       - "3002:3001"[m
+ [m

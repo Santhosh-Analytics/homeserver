@@ -1,0 +1,21 @@
+services:
+  audiobookshelf:
+    image: ghcr.io/advplyr/audiobookshelf:latest
+    container_name: audiobookshelf
+
+    ports:
+      - "13378:80"
+
+    environment:
+      - TZ=Asia/Kolkata
+
+    volumes:
+      - ./config:/config
+      - ./metadata:/metadata
+      - /srv/shares/Stories/Audiobooks:/audiobooks
+      - /srv/shares/Stories/Podcasts:/podcasts
+
+    restart: unless-stopped
+
+    labels:
+      - "diun.enable=true"
