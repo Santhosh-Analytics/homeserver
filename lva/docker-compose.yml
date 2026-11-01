@@ -27,6 +27,8 @@ services:
     restart: unless-stopped
     network_mode: "host"
     user: "${LVA_USER_ID:-1000}:${LVA_USER_GROUP:-1000}"
+    devices:
+      - /dev/snd:/dev/snd
     environment:
       # Pulseaudio
       - ENABLE_DEBUG=1

@@ -19,6 +19,19 @@ services:
       - base-int8
       - --language
       - en
+      - --cpu-threads
+      - "4"
+      - --beam-size
+      - "8"
+      - --vad-filter
+      - --vad-min-silence-ms
+      - "500"
+      - --initial-prompt
+      - "Home Assistant voice commands in Indian English. AC means air conditioner. Common \
+         commands: turn on, turn off, switch on, switch off, set temperature, bedroom, \
+         living room, downstairs, upstairs, kitchen, shopping list, add milk, bread, fan, \
+         lights, timer set temperature, temperature, swing, turn on, turn off."
+
 
   # whisper-ta:
   #   image: rhasspy/wyoming-whisper:latest
@@ -56,7 +69,7 @@ services:
 
     command:
       - --voice
-      - en_US-lessac-high
+      - en_US-ryan-medium
 
 
 # This must be at the root level (0 spaces of indentation)
