@@ -16,13 +16,13 @@ services:
 
     command:
       - --model
-      - base-int8
+      - tiny-int8
       - --language
       - en
       - --cpu-threads
       - "4"
       - --beam-size
-      - "8"
+      - "1"
       - --vad-filter
       - --vad-min-silence-ms
       - "500"
@@ -30,7 +30,7 @@ services:
       - "Home Assistant voice commands in Indian English. AC means air conditioner. Common \
          commands: turn on, turn off, switch on, switch off, set temperature, bedroom, \
          living room, downstairs, upstairs, kitchen, shopping list, add milk, bread, fan, \
-         lights, timer set temperature, temperature, swing, turn on, turn off."
+         lights, timer set temperature, temperature, swing, turn on, turn off, AC 29, AC 26"
 
 
   # whisper-ta:

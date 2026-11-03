@@ -57,6 +57,9 @@ services:
       - "diun.enable=true"
 
     environment:
+      DIUN_NOTIF_WEBHOOK_ENDPOINT: "http://192.168.29.239:8123/api/webhook/a45cc0e6256d371801bddde4b06cc1f1fe48db4bc5c4413e"
+      DIUN_NOTIF_WEBHOOK_METHOD: "POST"
+      DIUN_NOTIF_WEBHOOK_TIMEOUT: "10s"
       TZ: Asia/Kolkata
       LOG_LEVEL: info
       LOG_JSON: "false"
@@ -76,6 +79,69 @@ services:
 
     depends_on:
       - dockerproxy
+
+  dozzle:
+    image: amir20/dozzle:latest
+    container_name: dozzle
+    restart: unless-stopped
+    labels:
+      - "diun.enable=true"
+    environment:
+      DOZZLE_REMOTE_HOST: "tcp://dockerproxy:2375"
+    ports:
+      - "8080:8080"
+    networks:
+      - monitoring
+    depends_on:
+      - dockerproxy
+
+
+
+  netdata:
+    image: netdata/netdata:stable
+    container_name: netdata
+    hostname: homeserver
+    restart: unless-stopped
+    pid: host
+    network_mode: host
+    labels:
+      - "diun.enable=true"
+
+    cap_add:
+      - SYS_PTRACE
+      - SYS_ADMIN
+
+    security_opt:
+      - apparmor:unconfined
+
+    volumes:
+      - netdataconfig:/etc/netdata
+      - netdatalib:/var/lib/netdata
+      - netdatacache:/var/cache/netdata
+
+      - /:/host/root:ro,rslave
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /etc/localtime:/etc/localtime:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+      - /var/log:/host/var/log:ro
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /run/dbus:/run/dbus:ro
+
+
+
+
+
+
+
+
+
+volumes:
+  netdataconfig:
+  netdatalib:
+  netdatacache:
 
 networks:
   monitoring:
