@@ -1,3 +1,9 @@
+---
+# ============================================================
+# HOME AUTOMATION
+# ============================================================
+
+
 - Home Automation:
     - Home Assistant:
         icon: home-assistant.png
@@ -5,6 +11,13 @@
         description: Smart home control
         server: my-docker
         container: homeassistant
+    
+    # - Music Assistant:
+    #     icon: music-assistant.png
+    #     description: Whole-home music system
+    #     server: my-docker
+    #     container: music-assistant
+
     - Voice AI:
         - Linux Voice Assistant:
             icon: mdi-microphone
@@ -31,6 +44,11 @@
 
 
 
+# ============================================================
+# INFRASTRUCTURE
+# ============================================================
+
+
 - Infrastructure:
     # - Homepage:
     #     icon: homepage.png
@@ -50,11 +68,7 @@
               label: Battery
             - state: sensor.server_battery_status
               label: Power
-    - Diun:
-        icon: mdi-update
-        description: Container update monitor
-        server: my-docker
-        container: diun
+
     - AdGuard Home:
         icon: adguard-home.png
         href: http://192.168.29.239:3001
@@ -71,6 +85,7 @@
             - blocked
             - filtered
             - latency
+
     - Tailscale:
         icon: tailscale.png
         description: Secure remote access
@@ -84,12 +99,47 @@
             - update_available
             - expires
 
+    - Syncthing:
+        icon: syncthing.png
+        description: File synchronization
+        server: my-docker
+        container: syncthing
+
+    - Diun:
+        icon: mdi-update
+        description: Container update monitor
+        server: my-docker
+        container: diun
 
 
 
+# ============================================================
+# MONITORING
+# ============================================================
+- Monitoring:
 
+    - Uptime Kuma:
+         icon: uptime-kuma.png
+         href: http://192.168.29.239:8080
+         description: Service availability monitoring
+         widget:
+            type: uptimekuma
+            url: http://192.168.29.239:3002
+            slug: Homelab
 
-- Backup:
+    - Dozzle:
+          icon: dozzle.png
+          description: Docker container logs
+          server: my-docker
+          container: dozzle
+
+  # - Netdata:
+  #     icon: netdata.png
+  #     description: Server performance monitoring
+  #     server: my-docker
+  #     container: netdata
+  
+
     - Restic Backup:
         icon: mdi-cloud-check
         description: Nightly backup to Backblaze B2
@@ -107,11 +157,14 @@
               timeStyle: short
             - field: snapshot
               label: Snapshot
-    - Uptime Kuma:
-        widget:
-          type: uptimekuma
-          url: http:192.168.29.239:3002
-          slug: Homelab
+
+
+
+
+# ============================================================
+# ENTERTAINMENT
+# ============================================================
+
 
 - Entertainment:
     - Navidrome:
@@ -120,6 +173,21 @@
         description: Personal music streaming
         server: my-docker
         container: navidrome
+
+    - Audiobookshelf:
+        icon: audiobookshelf.png
+        href: http://192.168.29.239:13378
+        description: Audiobooks and podcasts
+        server: my-docker
+        container: audiobookshelf
+        widget:
+          type: audiobookshelf
+          url: http://192.168.29.239:13378
+          key: "{{HOMEPAGE_VAR_ABS_TOKEN}}"
+          fields:
+            - books
+            - booksDuration
+            - podcasts
 
 # - Personal:
 #     - Wallos:
